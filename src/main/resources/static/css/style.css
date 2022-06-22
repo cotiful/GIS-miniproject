@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset, legend, p, select, table, th, td, tr, textarea, button, form {
+    margin: 0; padding: 0;
+}
+
+/* clearfix */
+.clearfix{*zoom:1;}
+.clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
+.clearfix:after {clear: both;}
+
+.float-left{float:left;}
+.float-right{float:right;}
+ul{list-style:none; padding-left:0px;}
+
+#wrap{width:100%}
+#left{padding:20px; width:20%}
+#right{padding:20px; width:80%;}
+
+.mark{background-color:#fff;}
+
+#map{width:100%;}
+
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset, legend, p, select, table, th, td, tr, textarea, button, form {
+    margin: 0; padding: 0;
+}
+
+/* clearfix */
+.clearfix{*zoom:1;}
+.clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
+.clearfix:after {clear: both;}
+
+.float-left{float:left;}
+.float-right{float:right;}
+ul{list-style:none; padding-left:0px;}
+
+#wrap{width:100%}
+#left{padding:20px; width:20%; height:600px; border:1px solid black; margin-left:5px; margin-top:10px; background-color:#E9ECEF; border-radius: 5px}
+#mid{padding:20px; width:60%;}
+#right{width:18%; border:1px solid black; height:600px; margin-top:10px; background-color :#E9ECEF; border-radius: 5px}
+
+.mark{background-color:#fff;}
+
+#map{width:100%;}
+
+.my_topic{
+	display:inline-block;
+}
