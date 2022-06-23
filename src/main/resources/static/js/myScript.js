@@ -6,34 +6,11 @@ var view = new ol.View({
 var myUrl = 'http://127.0.0.1:8080/geoserver/wms'
 
 
-var hospital = new ol.source.TileWMS({
-	url :myUrl,
-	params : {
-		VERSION : '1.3.0',
-		LAYERS : 'miniproject:kw_genhosp',
-		WIDTH : 256,
-		HEIGHT : 256,
-		CRS : 'EPSG:5174',
-		TILED : true,
-	},
-	serverType : 'geoserver'
-});
-
 
 var layers = [
 	new ol.layer.Tile({
 		source : new ol.source.OSM()
-	}), new ol.layer.Tile({
-		source : hospital
 	})
-	//   new ol.layer.Image({
-	// 	source: new ol.source.ImageWMS({
-	// 	  url: myUrl,
-	// 	  params: {'LAYERS': 'miniproject:kw_forestfire_all'},
-	// 	  ratio: 1,
-	// 	  serverType: 'geoserver'
-	// 	})
-	//   })
 ];
 
 var map = new ol.Map({
@@ -42,9 +19,22 @@ var map = new ol.Map({
 	layers : layers
 });
 
-$("#forest-fire").click(()=>{
-	forestfire();
+
+var hospitalLayer = new ol.layer.Tile({
+	source: new ol.source.TileWMS({
+		url :myUrl,
+		params : {
+			VERSION : '1.3.0',
+			LAYERS : 'miniproject:kw_genhosp',
+			WIDTH : 256,
+			HEIGHT : 256,
+			CRS : 'EPSG:5174',
+			TILED : true,
+		},
+		serverType : 'geoserver'
+})
 });
+
 
 var fireLayer = new ol.layer.Image({
 	source: new ol.source.ImageWMS({
@@ -55,16 +45,30 @@ var fireLayer = new ol.layer.Image({
 	})
 });
 
-function forestfire(){
+
+$("#my_kw_hospital").click(()=>{
+  hospital();
+})
+
+
+ $("#forest-fire").click(()=>{
+	forestFire();
+});
+
+$("#clear-button").click(()=>{
+	forestFireClaer();
+});
+
+function forestFire(){
 	map.addLayer(fireLayer);
  }
 
-$("#clear-button").click(()=>{
-	clear();
-});
-
-function clear(){
+function forestFireClaer(){
 	map.removeLayer(fireLayer);
+	map.removeLayer(hospitalLayer);
 	//alert("초기화");
 }
 
+function hospital(){
+	map.addLayer(hospitalLayer);
+}
