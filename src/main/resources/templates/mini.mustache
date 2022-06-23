@@ -19,60 +19,51 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css">
   
     <link rel="stylesheet" href="/content/css/style.css">
- 
-    <style>
-      .my_map{
-width: 100vh;
-height: 100vh;
-      }
-    </style>
 
-	
 </head>
 
 
 <body>
 	<div id="wrap">
-		<div class="jumbotron text-center" style="margin-bottom:0">
-			  <h1>Force Wave Mini Project</h1>
-  <p></p>
-  <div class="my_topic"><h3>강원도 산불 화재 <p></p>취약지역에 편의시설 설치</h3><h5>발표자 : 유승현</h5></div> 
-		</div>
+	
 		<!-- header -->
 
-		<div id="content" class="clearfix">
-		
 			<div id="left" class="float-left">
 				
   
   
 				<!-- serched-bld -->
-				<div class="" style="height:100%">
+				<div class="my_letter">
 					<div class="dropdown">
-  <button type="button" id="my_kw_forfire" class="btn btn-black dropdown-toggle container-fluid" data-toggle="dropdown">
+  <button type="button" id="my_kw_genhosp" class="btn btn-black dropdown-toggle container-fluid" data-toggle="dropdown">
     강원도 산불 데이터
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">등산로 화재 데이터</a>
-      <a class="dropdown-item" href="#">등산로 화재 데이터 중 </a>
-      <a class="dropdown-item" href="#">Link 3</a>
+      <div class="dropdown-item" id="forest-fire">등산로 화재 데이터</div> 
+      <div class="dropdown-item" id="non-fire">논, 밭 소각 화재 데이터 </div>
+      <div class="dropdown-item" id="other-fire">그 외 데이터</div>
     </div>
   </div>
  
  <div class="dropdown">
   <button type="button" id="my_kw_forfire" class="btn btn-black dropdown-toggle container-fluid" data-toggle="dropdown">
-    강원도 산불 데이터
+    강원도 지목 데이터
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Link 1</a>
-      <a class="dropdown-item" href="#">Link 2</a>
-      <a class="dropdown-item" href="#">Link 3</a>
+      <div class="dropdown-item">강원도 대 데이터</div> >
+      <div class="dropdown-item">강원도 전, 답 데이터 </div>
     </div>
+  </div>
+  
+  <div class="">
+  <button type="button" id="my_kw_forfire" class="btn btn-black dropdown-toggle container-fluid" data-toggle="dropdown">
+    강원도 저수지 데이터
+    </button>
   </div>
   
   <div class="dropdown">
   <button type="button" id="my_kw_forfire" class="btn btn-black dropdown-toggle container-fluid" data-toggle="dropdown">
-    강원도 산불 데이터
+    강원도 병원 데이터
     </button>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="#">Link 1</a>
@@ -80,17 +71,12 @@ height: 100vh;
       <a class="dropdown-item" href="#">Link 3</a>
     </div>
   </div>
-  
+
   <div class="dropdown">
-  <button type="button" id="my_kw_forfire" class="btn btn-black dropdown-toggle container-fluid" data-toggle="dropdown">
-    강원도 산불 데이터
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Link 1</a>
-      <a class="dropdown-item" href="#">Link 2</a>
-      <a class="dropdown-item" href="#">Link 3</a>
+    <button type="button" id="clear-button" class="btn btn-black dropdown-toggle container-fluid" data-toggle="dropdown">
+      초기화 버튼 
+      </button>
     </div>
-  </div>
    
 					<div id="marked-blds-rank">
 					 </div>
@@ -111,9 +97,6 @@ height: 100vh;
 
 			</div>
 			<!-- right -->
-			<div id="right" class="float-left">
-			aㅁㅇㄻㄴㅇㄹㅇㅁㄴㄹㅇㅁㄴ
-			</div>
 		</div>
 		<!-- content -->
 	</div>

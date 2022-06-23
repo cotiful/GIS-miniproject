@@ -11,4 +11,9 @@ public class MiniProjectController {
     public String home(){
         return "mini";
     }
+
+    @GetMapping("/main")
+    public String forestFire(){
+        return "main";
+    }
 }
