@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css">
+
+    <!-- 부트스트램 4버전	 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css">
+
+    <link rel="stylesheet" href="/content/css/style.css">
+
+</head>
+
+
+<body>
+    <div id="wrap">
+
+        <!-- header -->
+
+        <div id="left" class="float-left">
+
+            <div class="my_postition">
+
+                <!-- serched-bld -->
+                <div>
+
+                    <form class="d-flex justify-content-end">
+                        <input id="keyword" class="me-2" type="text" placeholder="위치를 정확하게 입력해주세요.">
+                        <input id="wfs" type="hidden" value="${gangwonList.textList}">
+                        <button id="btn-search" class="btn btn-primary" type="button">검색</button>
+                    </form>
+
+                    <div class="dropdown">
+                        <button type="button" id="my_kw_genhosp"
+                            class="btn btn-black dropdown-toggle container-fluid my_letter" data-toggle="dropdown">
+                            강원도 산불 데이터
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item" id="my_forestfire_points">강원도 산불 데이터</div>
+                            <div class="dropdown-item" id="my_forestfire_heatmap">강원도 HeatMap 데이터</div>
+
+                            <div class="dropdown-item dropdown dropright" id="my_kw_forestfire_from_people">등산로 화재
+                                데이터
+                                <div class="dropdown-item" id="fire-200m">
+                                    <label for="check200">등산로 화재 데이터 200m</label>
+                                    <input type="checkbox" id="check200">
+                                </div>
+                                <div class="dropdown-item">
+                                    <label for="check400">등산로 화재 데이터 400m</label>
+                                    <input type="checkbox" id="check400">
+                                </div>
+                                <div class="dropdown-item">
+                                    <label for="check600">등산로 화재 데이터 600m</label>
+                                    <input type="checkbox" id="check600">
+                                </div>
+                            </div>
+                            <div class="dropdown-item" id="non-fire">논, 밭 소각 화재 데이터 </div>
+                            <div class="dropdown-item" id="other-fire">그 외 데이터</div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button type="button" id="my_kw_forfire"
+                            class="btn btn-black dropdown-toggle container-fluid my_letter" data-toggle="dropdown">
+                            강원도 지목 데이터
+                        </button>
+                        <div class="dropdown-menu">
+                            <button type="button" class="dropdown-item" id="my_kw_dae">강원도 대 데이터</button>
+                            <div class="dropdown-item">강원도 전, 답 데이터 </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="button" id="my_kw_road" class="btn btn-black container-fluid my_letter">
+                            강원도 도로 데이터
+                    </div>
+
+                    <div class="">
+                        <button type="button" id="my_kw_forestPath"
+                            class="btn btn-black dropdown-toggle container-fluid my_letter" data-toggle="dropdown">
+                            강원도 등산로
+                    </div>
+
+                    <div>
+                        <button type="button" id="my_kw_res" class="btn btn-black container-fluid my_letter">
+                            강원도 저수지
+                    </div>
+
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-black dropdown-toggle container-fluid my_letter"
+                            data-toggle="dropdown">
+                            강원도 병원
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item" id="my_kw_hospital">강원도 전체 병원</div>
+                            <div class="dropdown-item" id="my_kw_big_hospital">강원도 종합 병원</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="button" id="my_kw_firestation" class="btn btn-black container-fluid my_letter">
+                            강원도 소방서
+                        </button>
+                    </div>
+
+                    <div>
+                        <button type="button" id="wfs-button" class="btn btn-black container-fluid my_letter">
+                            wfs 클릭버튼 </button>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div id="marked-blds-rank">
+            </div>
+
+        </div>
+        <!-- marked-blds -->
+
+    </div>
+
+    <!-- left -->
+    <div id="mid" class="float-left">
+        <div id="priority"></div>
+
+        <!-- 	<button class="btn btn-primary" type="button"
+					data-bs-toggle="collapse" data-bs-target="#collapseExample"
+					aria-expanded="false" aria-controls="collapseExample">반영
+					비율 변경</button> -->
+
+
+        <div id="map" class="my_map">
+            <div>
+                <button type="button" id="clear-button" class="btn btn-black container-fluid my_letter my_reset">
+                    버튼
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <!-- right -->
+    </div>
+    <!-- content -->
+    </div>
+    <!-- wrap -->
+
+
+</body>
+
+<footer class="main-footer" style="padding-bottom:0px">
+    <div class="float-right d-none d-sm-block">
+        <b>Version</b> 3.2.0
+    </div>
+    <strong>Copyright &copy; <a href="https://adminlte.io">forcewave</a>.</strong> All rights reserved.
+</footer>
+
+
+<script src="/content/js/myFetch.js"></script>
+<script src="/content/js/myScript.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b48da7ea2fa4e5f4a524f9fad6fc9514&libraries=services"></script>
+
+</html>

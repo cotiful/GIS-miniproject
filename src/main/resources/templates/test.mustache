@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css">
+
+    <!-- 부트스트램 4버전	 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css">
+
+    <link rel="stylesheet" href="/content/css/style.css">
+</head>
+
+<body>
+
+    <div class="container mt-3">
+
+        <form class="d-flex justify-content-end">
+            <input id="keyword" class="me-2" type="text" placeholder="Search">
+            <button id="btn-search" class="btn btn-primary" type="button">검색</button>
+        </form>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>제목</th>
+                </tr>
+            </thead>
+            <tbody id="board-box">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $("#btn-search").click(() => {
+            let keyword = $("#keyword").val();
+            search(keyword);
+        })
+
+
+        async function search(keyword) {
+            alert('데이터를 잘 가져왔습니다.');
+            console.log(keyword);
+            let response = await fetch(`/emd?searchKeyword=${keyword}`);
+            let responseParse = await response.json();
+            console.log(responseParse);
+
+            $("#board-box").append(render(textList))
+        }
+
+        function render(textList) {
+            return `${textList}`;
+        }
+    </script>
+</body>
+
+</html>

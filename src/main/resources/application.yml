@@ -1,0 +1,30 @@
+server:
+  port: 8081
+
+spring:
+  mvc:
+     static-path-pattern: /content/** 
+  web:
+    resources:
+      static-locations: META-INF:/resources, classpath:/resources, classpath:/static, classpath:/static/dist
+  mustache:
+    expose-session-attributes: true
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/project
+    platform: postgres
+    username: postgres
+    password: postgis
+  # jpa properties
+  jpa:
+    hibernate:
+      ddl-auto: update # When you launch the application for the first time - switch "none" at "create"
+      show-sql: true
+      database: project
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+    output :
+      ansi :
+        enabled : always
