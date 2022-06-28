@@ -15,7 +15,9 @@ async function search(keyword) {
         type: 'GET',
         data: { searchKeyword: keyword }
     }).success(function (data) {
+        console.log(data);
         console.log(data.textList);
+        // 배열로 돼있어서 string 없애주기 위해[] 넣음
         const wkt = data.textList[0];
         const format = new ol.format.WKT();
         const feature = format.readFeature(wkt, {
@@ -33,6 +35,7 @@ async function search(keyword) {
 
         map.addLayer(vector);
 
+        // 객체 선택하면 이동하게 만들어줌 
         view.fit(polygon, { padding: [170, 50, 30, 150] });
 
     }).error(function (textStatus) {

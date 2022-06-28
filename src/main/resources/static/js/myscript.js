@@ -1,6 +1,6 @@
 var view = new ol.View({
     center: [14318984.363280362, 4514923.621443103],
-    zoom: 9
+    zoom: 9.5
 });
 
 
@@ -83,20 +83,59 @@ var fireHeatMapLayer = new ol.layer.Image({
 
 // 산불 포인트 데이터 (완료)
 
-var forestFireLayer = new ol.layer.Tile({
-    source: new ol.source.TileWMS({
-        url: myUrl,
-        params: {
-            VERSION: '1.3.0',
-            LAYERS: 'project:forestfireall',
-            WIDTH: 256,
-            HEIGHT: 256,
-            CRS: 'EPSG:5174',
-            TILED: true,
-        },
-        serverType: 'geoserver'
-    })
+// var forestFireLayer = new ol.layer.Tile({
+//     source: new ol.source.TileWMS({
+//         url: myUrl,
+//         params: {
+//             VERSION: '1.3.0',
+//             LAYERS: 'project:forestfireall',
+//             WIDTH: 256,
+//             HEIGHT: 256,
+//             CRS: 'EPSG:5174',
+//             TILED: true,
+//         },
+//         serverType: 'geoserver'
+//     })
+// });
+///////////////////////////////////
+
+
+var wmsSource = new ol.source.TileWMS({
+    url: myUrl,
+    params: {
+        LAYERS: 'project:forestfireall', 'TILED': true
+    },
+    serverType: 'geoserver'
 });
+
+var forestFireLayer = new ol.layer.Tile({
+    source: wmsSource
+});
+
+var view = new ol.View({
+    center: [0, 0],
+    zoom: 1,
+});
+
+map.on('singleclick', function (evt) {
+    document.getElementById('info').innerHTML = '';
+
+    const viewResolution = /** @type {number} */ (view.getResolution());
+    const url = wmsSource.getFeatureInfoUrl(
+        evt.coordinate,
+        viewResolution,
+        'EPSG:3857',
+        { 'INFO_FORMAT': 'text/html' }
+    );
+
+    if (url) {
+        document.getElementById('info').innerHTML =
+            '<iframe width="100%" seamless="" src="' + url + '"></iframe>';
+    }
+});
+
+
+///////////////////////////////////////////////
 
 // 등산로 화재 데이터 (완료)
 var forestFireFromPeopleLayer = new ol.layer.Tile({
@@ -156,9 +195,23 @@ var daeLayer = new ol.layer.Tile({
 
 
 
-// 등산로 데이터(완료)
+// 등산로 화재 데이터(완료)
 
 var forestPathLayer = new ol.layer.Tile({
+    source: new ol.source.TileWMS({
+        url: myUrl,
+        params: {
+            LAYERS: 'project:forestpath',
+            CRS: 'EPSG:3857',
+        },
+        ratio: 1,
+        serverType: 'geoserver'
+    })
+});
+
+// 논, 밭 화재 데이터 
+
+var fireNonLayer = new ol.layer.Tile({
     source: new ol.source.TileWMS({
         url: myUrl,
         params: {
@@ -175,7 +228,9 @@ let check = {
     bigFire: {
         fire: true,
         fireHeat: true,
-        firePeople: true
+        firePeople: true,
+        nonFire: true,
+        // attriFire: true
     },
     dae: true,
     road: true,
@@ -202,6 +257,10 @@ function clickCheck(isClick, layerName) {
     return isClick;
 }
 
+
+$("#my-non-fire").click(() => {
+    check.bigFire.nonFire = clickCheck(check.bigFire.nonFire,)
+})
 
 $("#my_kw_forestPath").click(() => {
     check.path = clickCheck(check.path, forestPathLayer);

@@ -67,7 +67,7 @@
                                     <input type="checkbox" id="check600">
                                 </div>
                             </div>
-                            <div class="dropdown-item" id="non-fire">논, 밭 소각 화재 데이터 </div>
+                            <div class="dropdown-item" id="my-non-fire">논, 밭 소각 화재 데이터 </div>
                             <div class="dropdown-item" id="other-fire">그 외 데이터</div>
                         </div>
                     </div>
@@ -116,10 +116,17 @@
                         </button>
                     </div>
 
-                    <div>
-                        <button type="button" id="wfs-button" class="btn btn-black container-fluid my_letter">
-                            wfs 클릭버튼 </button>
-                    </div>
+
+                </div>
+
+                <div class="my_letter">
+                    <table border="1" width="200px" height="50px">
+                        <tr>
+                            <td>1행 1열</td>
+                            <td id="산불 데이터 ">1행 2열</td>
+                        </tr>
+
+                    </table>
                 </div>
 
 
@@ -145,6 +152,7 @@
 
         <div id="map" class="my_map">
             <div>
+                <div id="info"></div>
                 <button type="button" id="clear-button" class="btn btn-black container-fluid my_letter my_reset">
                     버튼
                 </button>
