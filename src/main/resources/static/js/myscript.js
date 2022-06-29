@@ -21,6 +21,7 @@ var map = new ol.Map({
 
 
 
+
 // 도로 데이터
 var roadLayer = new ol.layer.Tile({
     source: new ol.source.TileWMS({
@@ -82,28 +83,12 @@ var fireHeatMapLayer = new ol.layer.Image({
 });
 
 // 산불 포인트 데이터 (완료)
-
-// var forestFireLayer = new ol.layer.Tile({
-//     source: new ol.source.TileWMS({
-//         url: myUrl,
-//         params: {
-//             VERSION: '1.3.0',
-//             LAYERS: 'project:forestfireall',
-//             WIDTH: 256,
-//             HEIGHT: 256,
-//             CRS: 'EPSG:5174',
-//             TILED: true,
-//         },
-//         serverType: 'geoserver'
-//     })
-// });
-///////////////////////////////////
-
-
 var wmsSource = new ol.source.TileWMS({
     url: myUrl,
+    // projection: osmSource.getProjection(),
     params: {
-        LAYERS: 'project:forestfireall', 'TILED': true
+        'LAYERS': 'project:forestfireall',
+        'tiled': true
     },
     serverType: 'geoserver'
 });
@@ -112,27 +97,33 @@ var forestFireLayer = new ol.layer.Tile({
     source: wmsSource
 });
 
-var view = new ol.View({
+var view2 = new ol.View({
     center: [0, 0],
     zoom: 1,
 });
 
-map.on('singleclick', function (evt) {
-    document.getElementById('info').innerHTML = '';
+// map.on('singleclick', function (evt) {
+//     // map.setTarget(map.layer.forestFireLayer);
 
-    const viewResolution = /** @type {number} */ (view.getResolution());
-    const url = wmsSource.getFeatureInfoUrl(
-        evt.coordinate,
-        viewResolution,
-        'EPSG:3857',
-        { 'INFO_FORMAT': 'text/html' }
-    );
+//     // coorinate = ol.proj.transform(evt.coordinate, 'EPSG:5174', 'EPSG:3857');
+//     console.log(evt.coordinate)
+//     document.getElementById('info').innerHTML = '';
 
-    if (url) {
-        document.getElementById('info').innerHTML =
-            '<iframe width="100%" seamless="" src="' + url + '"></iframe>';
-    }
-});
+//     const viewResolution = /** @type {number} */ (view2.getResolution());
+
+//     const surl = wmsSource.getFeatureInfoUrl(
+//         evt.coordinate,
+//         viewResolution,
+//         'EPSG:3857',
+//         { 'INFO_FORMAT': 'text/html' }
+//     );
+//     console.log(surl);
+
+//     if (surl) {
+//         document.getElementById('info').innerHTML =
+//             '<iframe width="100%" height="100px" seamless="" src="' + surl + '"></iframe>';
+//     }
+// });
 
 
 ///////////////////////////////////////////////
@@ -194,7 +185,6 @@ var daeLayer = new ol.layer.Tile({
 });
 
 
-
 // 등산로 화재 데이터(완료)
 
 var forestPathLayer = new ol.layer.Tile({
@@ -211,17 +201,17 @@ var forestPathLayer = new ol.layer.Tile({
 
 // 논, 밭 화재 데이터 
 
-var fireNonLayer = new ol.layer.Tile({
-    source: new ol.source.TileWMS({
-        url: myUrl,
-        params: {
-            LAYERS: 'project:forestpath',
-            CRS: 'EPSG:3857',
-        },
-        ratio: 1,
-        serverType: 'geoserver'
-    })
-});
+// var fireNonLayer = new ol.layer.Tile({
+//     source: new ol.source.TileWMS({
+//         url: myUrl,
+//         params: {
+//             LAYERS: 'project:forestpath',
+//             CRS: 'EPSG:3857',
+//         },
+//         ratio: 1,
+//         serverType: 'geoserver'
+//     })
+// });
 
 let check = {
 
@@ -229,10 +219,9 @@ let check = {
         fire: true,
         fireHeat: true,
         firePeople: true,
-        nonFire: true,
-        // attriFire: true
     },
     dae: true,
+    non: true,
     road: true,
     path: true,
     resvoir: true,
@@ -257,9 +246,8 @@ function clickCheck(isClick, layerName) {
     return isClick;
 }
 
-
-$("#my-non-fire").click(() => {
-    check.bigFire.nonFire = clickCheck(check.bigFire.nonFire,)
+$("#my_kw_jundad").click(() => {
+    check.non = clickCheck(check.non, nonLayer);
 })
 
 $("#my_kw_forestPath").click(() => {

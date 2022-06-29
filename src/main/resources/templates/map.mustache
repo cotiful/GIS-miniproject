@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
 
+    <!-- 제이쿼리	 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- 부트스트랩	 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+    <!-- 오픈레이어스	 -->
+
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css">
@@ -16,11 +22,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css">
 
     <link rel="stylesheet" href="/content/css/style.css">
+
+
 
 </head>
 
@@ -52,7 +57,7 @@
                             <div class="dropdown-item" id="my_forestfire_points">강원도 산불 데이터</div>
                             <div class="dropdown-item" id="my_forestfire_heatmap">강원도 HeatMap 데이터</div>
 
-                            <div class="dropdown-item dropdown dropright" id="my_kw_forestfire_from_people">등산로 화재
+                            <div class="dropdown-item dropdown dropright" id="my_kw_forestfire_from_people">등산객 화재
                                 데이터
                                 <div class="dropdown-item" id="fire-200m">
                                     <label for="check200">등산로 화재 데이터 200m</label>
@@ -67,8 +72,7 @@
                                     <input type="checkbox" id="check600">
                                 </div>
                             </div>
-                            <div class="dropdown-item" id="my-non-fire">논, 밭 소각 화재 데이터 </div>
-                            <div class="dropdown-item" id="other-fire">그 외 데이터</div>
+
                         </div>
                     </div>
 
@@ -79,7 +83,6 @@
                         </button>
                         <div class="dropdown-menu">
                             <button type="button" class="dropdown-item" id="my_kw_dae">강원도 대 데이터</button>
-                            <div class="dropdown-item">강원도 전, 답 데이터 </div>
                         </div>
                     </div>
 
@@ -89,9 +92,9 @@
                     </div>
 
                     <div class="">
-                        <button type="button" id="my_kw_forestPath"
-                            class="btn btn-black dropdown-toggle container-fluid my_letter" data-toggle="dropdown">
-                            강원도 등산로
+                        <button type="button" id="my_kw_forestPath" class="btn btn-black container-fluid my_letter">강원도
+                            등산로</button>
+
                     </div>
 
                     <div>
@@ -119,15 +122,6 @@
 
                 </div>
 
-                <div class="my_letter">
-                    <table border="1" width="200px" height="50px">
-                        <tr>
-                            <td>1행 1열</td>
-                            <td id="산불 데이터 ">1행 2열</td>
-                        </tr>
-
-                    </table>
-                </div>
 
 
             </div>
@@ -150,9 +144,9 @@
 					비율 변경</button> -->
 
 
-        <div id="map" class="my_map">
+        <div id="map">
             <div>
-                <div id="info"></div>
+                <div id="info">&nbsp;</div>
                 <button type="button" id="clear-button" class="btn btn-black container-fluid my_letter my_reset">
                     버튼
                 </button>
@@ -162,7 +156,7 @@
     </div>
     <!-- right -->
     </div>
-    <!-- content -->
+    <!-- content -->ㄴ
     </div>
     <!-- wrap -->
 
@@ -179,7 +173,9 @@
 
 <script src="/content/js/myFetch.js"></script>
 <script src="/content/js/myScript.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b48da7ea2fa4e5f4a524f9fad6fc9514&libraries=services"></script>
+<script src="/content/js/proj4-src.js"></script>
+<script src="/content/js/proj4.js"></script>
+
+
 
 </html>

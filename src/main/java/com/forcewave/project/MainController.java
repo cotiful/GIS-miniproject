@@ -13,14 +13,4 @@ public class MainController {
     public String main() {
         return "map";
     }
-
-    @GetMapping("/kakao")
-    public String kakao() {
-        return "kakao2";
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "test";
-    }
 }
