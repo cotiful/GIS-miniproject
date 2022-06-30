@@ -63,7 +63,6 @@ ul {
 }
 
 #left {
-    padding: 20px;
     width: 20%
 }
 
@@ -166,14 +165,18 @@ ul {
 
 #map {
     width: 100%;
-    height: 700px;
+    height: 680px;
+    position: absolute;
 }
 
 .my_topic {
     display: inline-block;
 }
 
-
+.my_box {
+    border: 1px solid black;
+    height: 200px;
+}
 
 .my_attri {
     display: flex;
@@ -201,4 +204,37 @@ ul {
     justify-content: flex-end;
     border: 1px solid black;
     width: 50px;
+}
+
+.my_select {
+    width: 200px;
+}
+
+.my_select_padding {
+    padding-left: 30px;
+}
+
+.my_logo {
+    display: flex;
+    width: 120px;
+    height: 100px;
+}
+
+.my_padding {
+    padding-top: 30px;
+    padding-bottom: 5px;
+}
+
+.my_font {
+    font-style: inherit
+}
+
+.my_table {
+    padding-top: 50px;
+}
+
+.my_table,
+.my_th,
+.my_td {
+    border: 1px, solid black;
 }

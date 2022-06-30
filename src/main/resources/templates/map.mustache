@@ -25,8 +25,15 @@
 
     <link rel="stylesheet" href="/content/css/style.css">
 
+    <script src="https://kit.fontawesome.com/6b3377d2bb.js" crossorigin="anonymous"></script>
 
+    <style>
+        th,
+        th {
+            border: 1px, solid, black;
 
+        }
+    </style>
 </head>
 
 
@@ -41,16 +48,21 @@
 
                 <!-- serched-bld -->
                 <div>
-
-                    <form class="d-flex justify-content-end">
-                        <input id="keyword" class="me-2" type="text" placeholder="위치를 정확하게 입력해주세요.">
-                        <input id="wfs" type="hidden" value="${gangwonList.textList}">
-                        <button id="btn-search" class="btn btn-primary" type="button">검색</button>
-                    </form>
-
+                    <div class="my_logo">
+                        <img
+                            src="data:image/png;base64,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">
+                    </div>
+                    <div class="my_padding">
+                        <form class="d-flex justify-content-end">
+                            <input id="keyword" class="me-2 my_select " type="text" placeholder="위치를 정확하게 입력해주세요.">
+                            <input id="wfs" type="hidden" value="${gangwonList.textList}">
+                            <button id="btn-search" class="btn btn-primary" type="button">검색</button>
+                        </form>
+                    </div>
                     <div class="dropdown">
                         <button type="button" id="my_kw_genhosp"
-                            class="btn btn-black dropdown-toggle container-fluid my_letter" data-toggle="dropdown">
+                            class="my_font btn btn-black dropdown-toggle container-fluid my_letter"
+                            data-toggle="dropdown">
                             강원도 산불 데이터
                         </button>
                         <div class="dropdown-menu">
@@ -72,8 +84,8 @@
                                     <input type="checkbox" id="check600">
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
 
                     <div class="dropdown">
@@ -119,7 +131,35 @@
                         </button>
                     </div>
 
+                    <div class="my_box my_padding">
+                        <table class="my_table">
+                            <thead>
+                                <tr>
+                                    <th>d</th>
+                                    <th>d</th>
 
+                                </tr>
+                                <tr>
+                                    <th>d</th>
+                                    <th>d</th>
+                                </tr>
+                                <tr>
+                                    <th>d</th>
+                                    <th>d</th>
+                                </tr>
+                                <tr>
+                                    <th>d</th>
+                                    <th>d</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                    <div class="float-right d-none d-sm-block">
+                        <b>Version</b> 3.2.0
+                    </div>
+                    <strong>Copyright &copy; <a href="https://adminlte.io">forcewave</a>.</strong>
+                    All rights reserved.
                 </div>
 
 
@@ -146,29 +186,24 @@
 
         <div id="map">
             <div>
-                <div id="info">&nbsp;</div>
+                <div id="info" class="d-flex justify-content-end ">&nbsp;</div>
                 <button type="button" id="clear-button" class="btn btn-black container-fluid my_letter my_reset">
-                    버튼
+                    <i class="fa-thin fa-trash-arrow-up"></i>
                 </button>
             </div>
         </div>
 
     </div>
     <!-- right -->
-    </div>
-    <!-- content -->ㄴ
+    <!-- content -->
     </div>
     <!-- wrap -->
 
 
 </body>
 
-<footer class="main-footer" style="padding-bottom:0px">
-    <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; <a href="https://adminlte.io">forcewave</a>.</strong> All rights reserved.
-</footer>
+
+
 
 
 <script src="/content/js/myFetch.js"></script>
