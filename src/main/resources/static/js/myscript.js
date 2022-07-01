@@ -235,11 +235,11 @@ let check = {
 function clickCheck(isClick, layerName) {
     console.log(isClick);
     if (isClick) {
-        alert("추가됩니다");
+
         map.addLayer(layerName)
         isClick = false;
     } else {
-        alert("제거됩니다");
+
         map.removeLayer(layerName);
         isClick = true;
     };
@@ -264,7 +264,7 @@ $("#my_kw_hospital").click(() => {
 })
 
 $("#my_kw_big_hospital").click(() => {
-    check.hosp.bighosp = clickCheck(check.hosp.bighosp, bigHospitalLayer);
+    check.hosp.bighosp = clickCheck(check.hosp.bighosp, bigHospitalLayer); s
 })
 
 $("#my_kw_road").click(() => {
@@ -309,6 +309,7 @@ function claerButton() {
     map.removeLayer(forestFireLayer);
     map.removeLayer(resvoirLayer);
     map.removeLayer(roadLayer);
+    map.removeLayer(hospitalLayer);
 
 }
 

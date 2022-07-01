@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>소방관 쉼터 입지 분석</title>
 
     <!-- 제이쿼리	 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -26,12 +26,28 @@
     <link rel="stylesheet" href="/content/css/style.css">
 
     <script src="https://kit.fontawesome.com/6b3377d2bb.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 
     <style>
-        th,
-        th {
-            border: 1px, solid, black;
+        .grid-container {
+            display: grid;
+            background-color: #EDEBE4;
+            margin-bottom: 90px;
+        }
 
+        .grid-item {
+            background-color: #EDEBE4;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .grid01 {
+            grid-template-columns: 35% 35% 35%;
         }
     </style>
 </head>
@@ -49,59 +65,44 @@
                 <!-- serched-bld -->
                 <div>
                     <div class="my_logo">
-                        <img
+                        <img style="cursor:pointer;" id="clear-button"
                             src="data:image/png;base64,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">
                     </div>
+                    <div class="my_title">
+                        <p>산불진압 소방관들을 위한<br>강원도 편의시설 입지 선정</p>
+                    </div>
+
                     <div class="my_padding">
                         <form class="d-flex justify-content-end">
-                            <input id="keyword" class="me-2 my_select " type="text" placeholder="위치를 정확하게 입력해주세요.">
+                            <input id="keyword" class="me-2 my_select " type="text" placeholder="읍면동 위치를 정확하게 입력해주세요.">
                             <input id="wfs" type="hidden" value="${gangwonList.textList}">
                             <button id="btn-search" class="btn btn-primary" type="button">검색</button>
                         </form>
                     </div>
                     <div class="dropdown">
                         <button type="button" id="my_kw_genhosp"
-                            class="my_font btn btn-black dropdown-toggle container-fluid my_letter"
-                            data-toggle="dropdown">
-                            강원도 산불 데이터
+                            class=" btn btn-black dropdown-toggle container-fluid my_letter" data-toggle="dropdown">
+                            강원도 산불
                         </button>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-item" id="my_forestfire_points">강원도 산불 데이터</div>
-                            <div class="dropdown-item" id="my_forestfire_heatmap">강원도 HeatMap 데이터</div>
-
-                            <div class="dropdown-item dropdown dropright" id="my_kw_forestfire_from_people">등산객 화재
-                                데이터
-                                <div class="dropdown-item" id="fire-200m">
-                                    <label for="check200">등산로 화재 데이터 200m</label>
-                                    <input type="checkbox" id="check200">
-                                </div>
-                                <div class="dropdown-item">
-                                    <label for="check400">등산로 화재 데이터 400m</label>
-                                    <input type="checkbox" id="check400">
-                                </div>
-                                <div class="dropdown-item">
-                                    <label for="check600">등산로 화재 데이터 600m</label>
-                                    <input type="checkbox" id="check600">
-                                </div>
+                        <div class="dropdown-menu container-fluid">
+                            <div class="dropdown-item" id="my_forestfire_points"><b>강원도 모든 산불</b></div>
+                            <div class="dropdown-item dropdown dropright" id="my_kw_forestfire_from_people">
+                                <b>등산객 화재</b>
                             </div>
+                            <div class="dropdown-item" id="my_forestfire_heatmap"><b>강원도 HeatMap</b></div>
+
+
                         </div>
 
-                    </div>
-
-                    <div class="dropdown">
-                        <button type="button" id="my_kw_forfire"
-                            class="btn btn-black dropdown-toggle container-fluid my_letter" data-toggle="dropdown">
-                            강원도 지목 데이터
-                        </button>
-                        <div class="dropdown-menu">
-                            <button type="button" class="dropdown-item" id="my_kw_dae">강원도 대 데이터</button>
-                        </div>
                     </div>
 
                     <div>
-                        <button type="button" id="my_kw_road" class="btn btn-black container-fluid my_letter">
-                            강원도 도로 데이터
+                        <button type="button" id="my_kw_dae" class="btn btn-black  container-fluid my_letter">
+                            강원도 지목(대)
+                        </button>
                     </div>
+
+
 
                     <div class="">
                         <button type="button" id="my_kw_forestPath" class="btn btn-black container-fluid my_letter">강원도
@@ -120,8 +121,10 @@
                             강원도 병원
                         </button>
                         <div class="dropdown-menu">
-                            <div class="dropdown-item" id="my_kw_hospital">강원도 전체 병원</div>
-                            <div class="dropdown-item" id="my_kw_big_hospital">강원도 종합 병원</div>
+                            <div class=" btn btn-black container-fluid " id="my_kw_hospital">
+                                <b>강원도 전체 병원</b>
+                            </div>
+                            <div class=" btn btn-black container-fluid " id="my_kw_big_hospital"><b>강원도 종합 병원</b></div>
                         </div>
                     </div>
 
@@ -130,35 +133,54 @@
                             강원도 소방서
                         </button>
                     </div>
+                    <hr>
 
-                    <div class="my_box my_padding">
-                        <table class="my_table">
-                            <thead>
-                                <tr>
-                                    <th>d</th>
-                                    <th>d</th>
+                    <div class="dropdwon">
+                        <button type="button" class="btn btn-black dropdown-toggle container-fluid my_letter"
+                            data-toggle="dropdown">
+                            <i class="fa-regular fa-circle-dot"></i> 위치 조건(단위:m)
+                        </button>
+                        <div id="location_title" class="my_title_letter"></div>
+                        <div class="dropdown-menu my_width">
+                            <div class=" btn btn-black container-fluid " id="my_donghae_forestFire"><b>동해시 읍면동 산불 총
+                                    발생횟수</b>
+                            </div>
 
-                                </tr>
-                                <tr>
-                                    <th>d</th>
-                                    <th>d</th>
-                                </tr>
-                                <tr>
-                                    <th>d</th>
-                                    <th>d</th>
-                                </tr>
-                                <tr>
-                                    <th>d</th>
-                                    <th>d</th>
-                                </tr>
-                            </thead>
+                            <div class=" btn btn-black container-fluid " id="my_donghae_forestPath"><b>동해시 읍면동 등산로 총
+                                    길이</b>
+                            </div>
+                            <div class=" btn btn-black container-fluid " id="my_donghae_resvoir"><b>동해시 읍면동 저수지 면적</b>
+                            </div>
+                            <div class=" btn btn-black container-fluid " id="my_donghae_hospital"><b>동해시 읍면동 병원거리</b>
+                            </div>
+                            <div class=" btn btn-black container-fluid " id="my_donghae_firestation"><b>동해시 읍면동 소방서와의
+                                    거리</b>
+                            </div>
+                            <div class=" btn btn-black container-fluid " id="my-ranking-btn"><b>동해시 읍면동 최적입지
+                                    산출물</b>
+                            </div>
+                        </div>
 
-                        </table>
                     </div>
-                    <div class="float-right d-none d-sm-block">
-                        <b>Version</b> 3.2.0
-                    </div>
-                    <strong>Copyright &copy; <a href="https://adminlte.io">forcewave</a>.</strong>
+
+
+                    <div class="my_grid_position">
+                        <div class="grid-container grid01 my_brand">
+                            <div class="grid-item" id="rank1"></div>
+                            <div class="grid-item" id="rank2"></div>
+                            <div class="grid-item" id="rank3"></div>
+                            <div class="grid-item" id="rank1-1"></div>
+                            <div class="grid-item" id="rank2-1"></div>
+                            <div class="grid-item" id="rank3-1"></div>
+                        </div>
+                        <div class="float-right d-none d-sm-block">
+                        </div>
+
+
+
+                        <br>
+                    </div class=>
+                    <strong>Copyright &copy; <a href="https://www.forcewave.co.kr">forcewave</a>.</strong>
                     All rights reserved.
                 </div>
 
@@ -185,32 +207,19 @@
 
 
         <div id="map">
-            <div>
-                <div id="info" class="d-flex justify-content-end ">&nbsp;</div>
-                <button type="button" id="clear-button" class="btn btn-black container-fluid my_letter my_reset">
-                    <i class="fa-thin fa-trash-arrow-up"></i>
-                </button>
-            </div>
-        </div>
 
-    </div>
-    <!-- right -->
-    <!-- content -->
+
+        </div>
+        <!-- right -->
+        <!-- content -->
     </div>
     <!-- wrap -->
 
 
 </body>
-
-
-
-
-
 <script src="/content/js/myFetch.js"></script>
 <script src="/content/js/myScript.js"></script>
 <script src="/content/js/proj4-src.js"></script>
 <script src="/content/js/proj4.js"></script>
-
-
 
 </html>

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Controller
 public class MainController {
 
-    @GetMapping("/main")
+    @GetMapping("/")
     public String main() {
         return "map";
     }
